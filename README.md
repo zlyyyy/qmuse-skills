@@ -18,21 +18,37 @@ QMuse 官方 Agent Skill：让编程 Agent 创建应用、导入 React 工程、
 
 ### 安装
 
-以下方式需要 Node.js **22.20 或更高版本**，以满足当前 `skills` 安装工具的要求，以及可以登录的 QMuse 账号。
+推荐统一使用官方 CLI 安装和升级技能。需要 Node.js **20 或更高版本**、可登录的 QMuse 账号；本地云联调需要 Node.js 20.19+。
 
 ```bash
 npm install -g @qmuse/qmuse-cli@latest
-npx skills add zlyyyy/qmuse-skills --skill qmuse-cli
+qmuse agent-skill install --agent codex
+qmuse agent-skill status --agent codex --json
 ```
 
-按安装工具提示选择目标 Agent。默认安装到当前项目；需要全局安装时，给 `npx skills add` 添加 `-g`。
+将 `codex` 换成目标工具标识：`claude`、`cursor`、`trae`、`codebuddy`、`qoder` 或 `qwen`。CLI 使用各工具的用户级技能目录，例如 Codex 是 `~/.codex/skills/qmuse-cli`；安装成功后确认状态中的 `installed.address` 和 `installed.upToDate`。
 
-QMuse CLI 自身支持 Node.js 20+；本地云联调需要 Node.js 20.19+。也可通过官方 CLI 安装技能：
+### 已经通过 GitHub 或技能市场安装
+
+安装位置由安装工具、目标 Agent 和项目/全局范围决定。以 Codex 为例：
+
+| 安装方式 | 目录 |
+| --- | --- |
+| `qmuse agent-skill install --agent codex` | `~/.codex/skills/qmuse-cli` |
+| `npx skills add zlyyyy/qmuse-skills --skill qmuse-cli -a codex` | 当前项目的 `.agents/skills/qmuse-cli` |
+| 上述 `npx` 命令加 `-g` | `~/.agents/skills/qmuse-cli` |
+
+同名技能可能装在不同位置。已有本技能时，复用现有位置：将 CLI 的 `--target` 指向已有 `qmuse-cli` 文件夹的**父目录**，安装成功后登记到 CLI 的升级同步中。
 
 ```bash
-qmuse agent-skill install --agent codex
-# 其他工具标识：claude、cursor、trae、codebuddy、qoder、qwen
+# 例如：已有技能位于当前项目的 .agents/skills/qmuse-cli
+qmuse agent-skill install --target ./.agents/skills
+qmuse agent-skill status --target ./.agents/skills --json
 ```
+
+`--target` 会自动追加 `/qmuse-cli`。已选择复用已有目录时，沿用该目录管理；后续使用 `qmuse upgrade` 同步。通过知乎、SkillHub 等平台下载的包也适用同一规则，安装后保留 `SKILL.md` 和 `references/` 的相对路径。
+
+选择 `npx skills` 安装方式时，还需满足其 Node.js 22.20+ 要求。
 
 首次操作应用时，按 Agent 提示完成 QMuse 登录和空间选择。更多步骤见[官方安装指南](https://www.qmuse.cn/skill-setup.md)。
 
@@ -60,16 +76,31 @@ The `qmuse-cli` skill teaches your coding agent how to use QMuse to:
 
 ### Installation
 
-The `skills` installation method above requires **Node.js 22.20+**. Install the companion CLI and the skill:
+Use the official CLI as the primary installer and updater. It requires **Node.js 20+**, or Node.js 20.19+ for local cloud development, and a QMuse account for application operations:
 
 ```bash
 npm install -g @qmuse/qmuse-cli@latest
-npx skills add zlyyyy/qmuse-skills --skill qmuse-cli
+qmuse agent-skill install --agent codex
+qmuse agent-skill status --agent codex --json
 ```
 
-Choose your coding agent when prompted. Installation is scoped to the current project by default; add `-g` to install globally.
+Replace `codex` with `claude`, `cursor`, `trae`, `codebuddy`, `qoder`, or `qwen` for another agent.
 
-The QMuse CLI itself requires Node.js 20+, or Node.js 20.19+ for local cloud development. Its built-in installer supports Codex, Claude Code, Cursor, Trae, CodeBuddy, Qoder, and Qwen Code. A QMuse account and sign-in are required for application operations.
+### Reuse an existing GitHub or marketplace installation
+
+Matching skill names do not guarantee matching directories. For Codex, the official CLI defaults to `~/.codex/skills/qmuse-cli`, while `npx skills add` uses the project's `.agents/skills/qmuse-cli`, or `~/.agents/skills/qmuse-cli` with `-g`.
+
+If the skill is already installed, point `--target` at its existing **parent directory** so the CLI reuses and registers that location:
+
+```bash
+# Existing skill: ./.agents/skills/qmuse-cli
+qmuse agent-skill install --target ./.agents/skills
+qmuse agent-skill status --target ./.agents/skills --json
+```
+
+The CLI appends `/qmuse-cli` to `--target`. Keep using the chosen location, and use `qmuse upgrade` for subsequent synchronization. The same rule applies to packages downloaded from Zhihu, SkillHub, or other marketplaces. Keep `SKILL.md` and `references/` together.
+
+The alternative `npx skills` installer requires Node.js 22.20+.
 
 ### Example prompts
 
