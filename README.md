@@ -4,7 +4,7 @@ Official QMuse CLI skill for AI coding agents. Create, import, iterate, sync, de
 
 QMuse 官方 Agent Skill：让编程 Agent 创建应用、导入 React 工程、对话迭代、同步源码、本地云联调并发布版本。
 
-[中文](#中文) · [English](#english) · [QMuse](https://www.qmuse.cn) · [安装指南](https://www.qmuse.cn/skill-setup.md)
+[中文](#中文) · [English](#english) · [QMuse](https://www.qmuse.cn?chInfo=ch_qmuse_active__qmuse_cli) · [安装指南](https://www.qmuse.cn/skill-setup.md)
 
 ## 中文
 
