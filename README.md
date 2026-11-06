@@ -16,6 +16,14 @@ QMuse 官方 Agent Skill：让编程 Agent 创建应用、导入 React 工程、
 - 拉取平台最新已保存源码，连接真实云资源进行本地开发。
 - 查询和管理云资源，发布指定应用版本并查看结果。
 
+### 一句话安装
+
+把下面整句话复制给当前使用的编程 Agent：
+
+```text
+读取 https://www.qmuse.cn/skill-setup.md 并安装 QMuse CLI 和官方 Skill；已有 qmuse-cli 技能时，用 --target 指向该技能文件夹的父目录并复用原位置，尚未安装时才使用当前 Agent 的默认目录。
+```
+
 ### 安装
 
 推荐统一使用官方 CLI 安装和升级技能。需要 Node.js **20 或更高版本**、可登录的 QMuse 账号；本地云联调需要 Node.js 20.19+。
@@ -73,6 +81,14 @@ The `qmuse-cli` skill teaches your coding agent how to use QMuse to:
 - Continue QMuse AI conversations and inspect or resume tasks.
 - Pull the latest saved source code and develop locally against real cloud resources.
 - Inspect cloud resources and deploy a selected application version.
+
+### One-prompt installation
+
+Copy this entire prompt to your coding agent:
+
+```text
+Read https://www.qmuse.cn/skill-setup.md and install QMuse CLI and its official skill for the current coding agent. If the qmuse-cli skill is already installed, reuse its existing folder by passing its parent directory to --target; otherwise use the current agent's default skill directory.
+```
 
 ### Installation
 
